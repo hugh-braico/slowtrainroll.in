@@ -1,0 +1,65 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+html {
+    background-color: lightgray;
+} 
+
+body {
+    max-width: 80ch;
+    padding: 2ch;
+    margin: auto;
+    line-height: 1;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    background-color: white;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+label {
+    width: 18ch;
+    float: left;
+    font-size: 12px;
+    text-align: right;
+    padding-right: 2ch;
+    padding-top: 0.8ch;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 88ch;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    padding: 5px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #ffd26e;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #ffd26e;
+}
+
+a {
+    color: #CC8B00;
+}

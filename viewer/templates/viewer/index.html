@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'viewer/style.css' %}">
+    <meta charset="utf-8">
+    <title>slowtrainroll.in</title>
+  </head>
+
+  <body>
+    <h1>🎷slowtrainroll.in (alpha)</h1>
+    
+    <form action="{% url 'viewer:index' %}" method="get">
+    <fieldset>
+      <strong>Filter results</strong>
+      {{ form.as_p }}
+      <input type="submit" value="Search">
+      {% if form.subject.errors %}
+        <ol>
+        {% for error in form.subject.errors %}
+          <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+      {% endif %}
+    </fieldset>
+    </form>
+
+    {% if vods %}
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Player 1</th>
+          <th>P1 Team</th>
+          <th>P2 Team</th>
+          <th>Player 2</th>
+          <th>.</th>
+        </tr>
+      {% for v in vods %}
+        {{ v.table_row_html | safe }}
+      {% endfor %}
+      </table>
+    {% else %}
+      <p>😔 No results found. </p>
+    {% endif %}
+    
+  </body>
+</html>
