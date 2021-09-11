@@ -22,6 +22,9 @@ rockthedrag.in, etc
 
 ### Deploying with gunicorn+nginx
 
+Use `python3 manage.py collectstatic` to collect all your static files
+together to the `/static` directory where nginx can see them.
+
 Install nginx and make sure you can see the default nginx page in browser
 
 Set up nginx as a reverse proxy - basically use the .conf file from the
@@ -39,6 +42,8 @@ Unlike the debug server you need to restart gunicorn after a git pull:
 ```bash
 ps aux | grep gunicorn | grep projectname | awk '{ print $2 }' | xargs kill -HUP
 ```
+
+(You will also need to collectstatic again if any static files have changed)
 
 Once HTTP looks good, use Let's Encrypt Certbot to generate SSL certs 
 and then make sure it didn't do anything totally stupid to your 
