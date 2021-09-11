@@ -25,7 +25,7 @@ with open(BASE_DIR / 'SECRET_KEY') as f:
 # Don't run with this turned on in production, obviously
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.slowtrainroll.in']
+ALLOWED_HOSTS = ['www.slowtrainroll.in', 'slowtrainroll.in']
 
 # TODO get HTTPS working first, then 
 # SESSION_COOKIE_SECURE = True
