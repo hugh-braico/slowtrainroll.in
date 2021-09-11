@@ -51,7 +51,6 @@ class Vod(models.Model):
 
     # HTML table row that displays all the info about this vod
     def table_row_html(self):
-        formatted_date = f"{self.date.strftime('%Y-%m-%d')}"
         p1team =f"{self.p1char1}" + \
                (f"/{self.p1char2}"  if self.p1char2 != "N" else "") + \
                (f"/{self.p1char3}" if self.p1char3 != "N" else "")
@@ -59,7 +58,6 @@ class Vod(models.Model):
                (f"/{self.p2char2}"  if self.p2char2 != "N" else "") + \
                (f"/{self.p2char3}" if self.p2char3 != "N" else "")
         link_html = f"<a href=\"{self.url}\">(Link)</a>"
-        self.event.replace("Skullgirls OCE ", "")
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
                    f"<td class=\"team p1\">{p1team}</td>" \
@@ -72,7 +70,8 @@ class Vod(models.Model):
     # (Called whenever the event name changes during the loop)
     def table_header_html(self):
         formatted_date = f"{self.date.strftime('%Y-%m-%d')}"
+        event = self.event.replace("Skullgirls OCE ", "")
         return f"<tr class=\"event\">" \
-               f"<th colspan=\"4\" class=\"name\">{self.event}</th>" \
+               f"<th colspan=\"4\" class=\"name\">{event}</th>" \
                f"<th class=\"date\">{formatted_date}</th>" \
                f"</tr>"
