@@ -46,6 +46,12 @@ th, td {
 
 th {
     background-color: #ffd26e;
+    position:sticky;
+    top:0;
+}
+
+.event th{
+    transform: calc(translateY(100%) - 1px);
 }
 
 tbody tr {
@@ -62,4 +68,8 @@ tbody tr:last-of-type {
 
 a {
     color: #CC8B00;
+}
+
+table tbody .event{
+    background: #ffd26e;
 }

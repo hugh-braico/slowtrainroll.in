@@ -31,8 +31,6 @@
     {% if vods %}
       <table>
         <tr>
-          <th>Date</th>
-          <th>Event</th>
           <th>Player 1</th>
           <th>P1 Team</th>
           <th>P2 Team</th>
@@ -40,6 +38,9 @@
           <th>.</th>
         </tr>
       {% for v in vods %}
+        {% ifchanged v.event %}
+          {{ v.table_header_html | safe }}
+        {% endifchanged %}
         {{ v.table_row_html | safe }}
       {% endfor %}
       </table>
