@@ -51,7 +51,7 @@ th {
 }
 
 .event th{
-    transform: calc(translateY(100%) - 1px);
+    top: 24px;
 }
 
 tbody tr {
