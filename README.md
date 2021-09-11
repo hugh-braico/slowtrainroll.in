@@ -14,9 +14,10 @@ rockthedrag.in, etc
 - If you're not familiar with how Django works, read 
   [the tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
 - `pip3 install -r requirements.txt`
-- generate a secret key and save it to a file called (yep) `/SECRET_KEY`
+- generate a secret key and save it to a file called (yep) `/SECRET_KEY` 
+  - see [Django deployment docs](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/#secret-key)
 - set `DEBUG` in `slowtrainrollin/settings.py` to `True`
-- `python manage.py migrate`
+- `python3 manage.py migrate`
 - `python3 manage.py runserver`
 
 ## Why is it called that?
