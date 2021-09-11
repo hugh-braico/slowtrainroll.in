@@ -31,7 +31,7 @@ def filtered_vods(filter_dict):
 
     # Filter event
     event = filter_dict.get('event', "")
-    vods = vods.filter(region__icontains=event)
+    vods = vods.filter(event__icontains=event)
 
     # If you want to add more filters (region, version, etc), 
     # do it here before it gets complicated!
