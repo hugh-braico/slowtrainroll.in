@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,10 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 with open(BASE_DIR / 'SECRET_KEY') as f:
     SECRET_KEY = f.read().strip()
 
-# Don't run with this turned on in production, obviously
-DEBUG = False
+# Use environment variables to determine whether to run in debug mode or not
+if os.getenv('STR_DEBUG') == 'True':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = ['www.slowtrainroll.in', 'slowtrainroll.in']
+if DEBUG:
+    ALLOWED_HOSTS = ['127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['www.slowtrainroll.in', 'slowtrainroll.in']
 
 # TODO get HTTPS working first, then 
 # SESSION_COOKIE_SECURE = True
