@@ -1,0 +1,28 @@
+.init-colours(@lists) {
+    :root[data-theme="theme-light"]{
+
+        .loop(length(@lists));
+        .loop(@i) when (@i > 0) {
+            .loop((@i - 1));
+
+            .init-colour(extract(extract(@lists, @i), 1), extract(extract(@lists, @i), 2));
+        }
+    }
+    :root[data-theme="theme-dark"]{
+
+        .loop(length(@lists));
+        .loop(@i) when (@i > 0) {
+            .loop((@i - 1));
+
+            .init-colour( extract( extract(@lists, @i), 1), extract( extract(@lists, @i), 3));
+        }
+    }
+}
+
+.init-colour(@name, @value){
+    --colour-@{name}: @value;
+}
+
+.colour(@x) {
+    @result: var(~'--colour-@{x}')
+}
