@@ -3,9 +3,13 @@
   <span class="slider"></span>
 </label>
 <script>
-  const html = document.querySelector('html');
-  html.dataset.theme = `theme-dark`;
+  const mode = localStorage.getItem('lightmode') === 'true'
+  const html = document.querySelector('html')
+
+  html.dataset.theme = `theme-${mode ? 'dark' : 'light'}`
+  document.getElementById("light-mode-switch").checked = mode
   document.getElementById("light-mode-switch").addEventListener("click", function() {
-    html.dataset.theme = `theme-${this.checked ? 'light' : 'dark'}`
+    html.dataset.theme = `theme-${this.checked ? 'dark' : 'light'}`
+    localStorage.setItem('lightmode', this.checked)
     })
 </script>
