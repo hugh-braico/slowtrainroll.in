@@ -133,6 +133,8 @@ STATIC_ROOT = BASE_DIR / "static"
 
 # Django-static-precompiler settings
 # https://django-static-precompiler.readthedocs.io/en/stable/general-settings.html
+if DEBUG:
+    STATIC_PRECOMPILER_ROOT = BASE_DIR / 'viewer/static'
 
 STATIC_PRECOMPILER_COMPILERS = (
     ('static_precompiler.compilers.LESS', {
