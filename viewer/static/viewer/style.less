@@ -1,7 +1,15 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500.css';
+@import 'helpers';
 
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500.css';
+//              colour variabl  Light mode      Dark mode
+.init-colours(  html-bg         lightgray   black,
+                body-bg         white       #191a1b,
+                table-header    #ffd26e     #7e6319,
+                table-row-even  #f3f3f3     #202123,
+                text            black       #e7e6e3;
+            );
 html {
-    background-color: lightgray;
+    background-color: .colour(html-bg)[];
 } 
 
 body {
@@ -10,7 +18,7 @@ body {
     margin: auto;
     line-height: 1;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    background-color: white;
+    background-color: .colour(body-bg)[];
     text-align: center;
 }
 
@@ -44,8 +52,17 @@ th, td {
     vertical-align: middle;
 }
 
+th, td, label, h1, strong, input, select{
+    color: .colour(text)[];
+}
+
+input, select{
+    background-color: .colour(body-bg)[];
+    border: 1px solid .colour(text)[];
+}
+
 th {
-    background-color: #ffd26e;
+    background-color: .colour(table-header)[];
     position:sticky;
     top:0;
 }
@@ -59,11 +76,11 @@ tbody tr {
 }
 
 tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: .colour(table-row-even)[];
 }
 
 tbody tr:last-of-type {
-    border-bottom: 2px solid #ffd26e;
+    border-bottom: 2px solid .colour(table-header)[];
 }
 
 a {
@@ -71,5 +88,46 @@ a {
 }
 
 table tbody .event{
-    background: #ffd26e;
+    background: .colour(table-header)[];
+}
+
+.switch{
+    position:fixed;
+    top:0;
+    right:0;
+    width:2rem;
+    height:1rem;
+    margin:1rem;
+    & input {
+        width:0;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height:100%;
+        width:100%;
+        background-color: .colour(table-row-even)[];;
+        -webkit-transition: .4s;
+        transition: .4s;
+        &:before {
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 50%;
+            left:0;
+            bottom:0;
+            background-color: .colour(text)[];;
+            -webkit-transition: .4s all ease;
+            transition: .4s all ease;
+          }
+      }
+    input:checked + .slider {
+        &:before{
+            transform: translateX(100%);
+        }
+    }
 }

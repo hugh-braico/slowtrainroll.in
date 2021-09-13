@@ -1,0 +1,11 @@
+<label class="switch">
+  <input type="checkbox" id="light-mode-switch">
+  <span class="slider"></span>
+</label>
+<script>
+  const html = document.querySelector('html');
+  html.dataset.theme = `theme-dark`;
+  document.getElementById("light-mode-switch").addEventListener("click", function() {
+    html.dataset.theme = `theme-${this.checked ? 'light' : 'dark'}`
+    })
+</script>
