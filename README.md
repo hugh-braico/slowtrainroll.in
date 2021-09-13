@@ -16,14 +16,15 @@ rockthedrag.in, etc
 - `pip3 install -r requirements.txt`
 - generate a secret key and save it to a file called (yep) `/SECRET_KEY` 
   - see [Django deployment docs](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/#secret-key)
-- set `DEBUG` in `slowtrainrollin/settings.py` to `True`
+- `export STR_DEBUG=True`
+- `python3 manage.py mmakemigrations`
 - `python3 manage.py migrate`
 - `python3 manage.py runserver`
 
 ### Deploying with gunicorn+nginx
 
-Use `python3 manage.py collectstatic` to collect all your static files
-together to the `/static` directory where nginx can see them.
+Use `python3 manage.py collectstatic` to collect all your static files together
+to the `/static` directory where nginx can see them.
 
 Install nginx and make sure you can see the default nginx page in browser
 
@@ -40,14 +41,14 @@ gunicorn -b unix:/tmp/gunicorn.sock --daemon slowtrainrollin.wsgi
 Unlike the debug server you need to restart gunicorn after a git pull: 
 
 ```bash
-ps aux | grep gunicorn | grep projectname | awk '{ print $2 }' | xargs kill -HUP
+ps aux | grep gunicorn | grep slowtrainrollin | awk '{ print $2 }' | xargs kill -HUP
 ```
 
 (You will also need to collectstatic again if any static files have changed)
 
-Once HTTP looks good, use Let's Encrypt Certbot to generate SSL certs 
-and then make sure it didn't do anything totally stupid to your 
-nginx.conf in the process (spoiler: it did)
+Once HTTP looks good, use Let's Encrypt Certbot to generate SSL certs and then 
+make sure it didn't do anything totally stupid to your nginx.conf in the process
+(spoiler: it did)
 
 ## Why is it called that?
 
