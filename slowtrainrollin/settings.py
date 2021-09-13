@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'static_precompiler',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,17 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['viewer/static']
 STATIC_ROOT = BASE_DIR / "static"
+
+# Django-static-precompiler settings
+# https://django-static-precompiler.readthedocs.io/en/stable/general-settings.html
+if DEBUG:
+    STATIC_PRECOMPILER_ROOT = BASE_DIR / 'viewer/static'
+
+STATIC_PRECOMPILER_COMPILERS = (
+    ('static_precompiler.compilers.LESS', {
+        "sourcemap_enabled": True
+    }),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
