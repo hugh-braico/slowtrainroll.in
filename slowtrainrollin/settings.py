@@ -23,11 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 with open(BASE_DIR / 'SECRET_KEY') as f:
     SECRET_KEY = f.read().strip()
 
-# Use environment variables to determine whether to run in debug mode or not
-if os.getenv('STR_DEBUG') == 'True':
-    DEBUG = True
-else:
-    DEBUG = False
+# Use environment variable to determine whether to run in debug mode or not
+DEBUG = (os.getenv('STR_DEBUG') == 'True')
 
 if DEBUG:
     ALLOWED_HOSTS = ['127.0.0.1']

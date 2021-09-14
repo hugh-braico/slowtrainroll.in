@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-# list of valid characters
+# list of valid characters (Following the same naming as TWB)
 character_choices = [
     ( "N", "None"),
     ("AN", "Annie"),
@@ -22,11 +22,46 @@ character_choices = [
     ("VA", "Valentine")
 ]
 
-# list of regions
-region_list = ["Europe", "Asia", "North America", "Oceania", "South America"]
+# list of regions (Following the same naming as TWB)
+region_list = [
+    "Europe", 
+    "Asia", 
+    "North America", 
+    "Oceania", 
+    "South America"
+]
+
+# list of Skullgirls versions (Following the same naming as TWB)
+version_list = [
+    # These three don't exist on TWB as of writing this (Sep 2021)
+    # I'm going with the names that are on Mizuumi Wiki
+    'Annie Release Update',
+    'Annie Patch Beta',
+    'Combo Breaker 2020 Update',
+    # Everything below this point is set by TWB's precedent
+    '2E+ Final',
+    '2E+ (old UD)',
+    '2E', # aka. Robo-Fortune Patch
+    'Beowulf Patch',
+    'Eliza Patch',
+    'Fukua Patch',
+    'Big Band Patch',
+    'Encore',
+    'MDE',
+    'SDE'
+    # Note: there are no "Vanilla" vods on TWB, SDE is the earliest
+]
 
 # TODO: generate (and cache) a distinct, alphabetised list of all events
-event_list = None
+event_list = []
+
+# all vod column values
+required_columns = [
+    'event', 'date', 'region', 'netplay', 'version',
+    'p1name', 'p1char1', 'p1char2', 'p1char3',
+    'p2name', 'p2char1', 'p2char2', 'p2char3',
+    'url'
+]
 
 # Represents one link to a vod/timestamp + relevant information about the set
 class Vod(models.Model): 
