@@ -18,7 +18,7 @@ rockthedrag.in, etc
 - generate a secret key and save it to a file called (yep) `/SECRET_KEY` 
   - see [Django deployment docs](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/#secret-key)
 - `export STR_DEBUG=True`
-- `python3 manage.py mmakemigrations`
+- `python3 manage.py makemigrations`
 - `python3 manage.py migrate`
 - `python3 manage.py runserver`
 
