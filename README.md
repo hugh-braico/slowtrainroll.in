@@ -7,20 +7,32 @@ rockthedrag.in, etc
 
 * Web framework: Django 3.2
 * Database: SQLite 
-* Currently hosted on AWS Lightsail with gunicorn + nginx
+* [Currently hosted](https://slowtrainroll.in/) on AWS Lightsail with 
+  gunicorn + nginx
 
 ## How do the thing
 
-- If you're not familiar with how Django works, read 
-  [the tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
-- `pip3 install -r requirements.txt`
-- `sudo apt install node-less`
-- generate a secret key and save it to a file called (yep) `/SECRET_KEY` 
+### Requirements
+
+- Unix-like environment (I use WSL2 Ubuntu)
+- Python 3.6+
+- `nodejs` and `npm`
+- [A working knowledge of Django](https://docs.djangoproject.com/en/3.2/intro/tutorial01/)
+
+### Development setup
+
+After cloning the repo and entering the directory:
+
+- Install Python dependencies: `pip3 install -r requirements.txt`
+- Install the CSS precompiler: `sudo npm install less -g`
+- Generate and save a secret key: `python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' > SECRET_KEY` 
   - see [Django deployment docs](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/#secret-key)
-- `export STR_DEBUG=True`
-- `python3 manage.py makemigrations`
-- `python3 manage.py migrate`
-- `python3 manage.py runserver`
+- (Dev only) set a flag to run the dev server in debug mode: `export STR_DEBUG=True`  
+- Apply migrations to the database: `python3 manage.py migrate`
+- Run the dev server: `python3 manage.py runserver`
+- Connect to http://127.0.0.1:8000/ in your browser to check it works
+- To test the admin backend, `python3 manage.py createsuperuser` then
+  visit http://127.0.0.1:8000/admin in your browser
 
 ### Deploying with gunicorn+nginx
 
@@ -47,9 +59,9 @@ ps aux | grep gunicorn | grep slowtrainrollin | awk '{ print $2 }' | xargs kill 
 
 (You will also need to collectstatic again if any static files have changed)
 
-Once HTTP looks good, use Let's Encrypt Certbot to generate SSL certs and then 
-make sure it didn't do anything totally stupid to your nginx.conf in the process
-(spoiler: it did)
+Once HTTP looks good, use [Let's Encrypt Certbot](https://certbot.eff.org/) to 
+generate SSL certs and then make sure it didn't do anything totally stupid to 
+your nginx.conf in the process (spoiler: it did)
 
 ## Why is it called that?
 
