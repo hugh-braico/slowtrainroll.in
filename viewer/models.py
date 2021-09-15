@@ -97,8 +97,8 @@ class Vod(models.Model):
         link_html = f"<a href=\"{self.url}\">(Link)</a>"
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
-                   f"<td class=\"team p1\">{p1team}</td>" \
-                   f"<td class=\"team p2\">{p2team}</td>" \
+                   f"<td class=\"team p1\"><div class=\"container\">{p1team}</div></td>" \
+                   f"<td class=\"team p2\"><div class=\"container\">{p2team}</div></td>" \
                    f"<td class=\"name p2\">{self.p2name}</td>" \
                    f"<td class=\"link\">{link_html}</td>" \
                f"</tr>"

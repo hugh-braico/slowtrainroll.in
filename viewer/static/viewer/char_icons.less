@@ -7,7 +7,18 @@
 }
 
 .team{
+    .container{
+        display:flex
+    };
+    &.p1 .container{
+        justify-content: flex-end;
+    }
+    &.p2 .container{
+        justify-content: flex-start;
+    }
+
     .icon{
+        background-color: white;
         width: 25px;
         height: 25px;
         display: inline-block;
