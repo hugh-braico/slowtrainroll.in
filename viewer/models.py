@@ -87,7 +87,7 @@ class Vod(models.Model):
     # HTML table row that displays all the info about this vod
     def table_row_html(self):
         # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
-        icon_html = '<img src="static/viewer/icons_charselect/{0}.png" height="25"> '
+        icon_html = '<div class="icon {0}"></div>'
         p1team = icon_html.format(self.p1char1) + \
                 (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
                 (icon_html.format(self.p1char3) if self.p1char3 != "N" else "")
