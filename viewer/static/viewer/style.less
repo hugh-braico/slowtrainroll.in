@@ -1,4 +1,5 @@
 @import 'helpers';
+@import 'char_icons';
 
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500.css';
 //              colour variabl  Light mode  Dark mode
@@ -65,10 +66,11 @@ th {
     background-color: .colour(table-header)[];
     position:sticky;
     top:0;
+    vertical-align: top;
 }
 
 .event th{
-    top: 24px;
+    top: 40px;
 }
 
 tbody tr {
@@ -89,6 +91,22 @@ a {
 
 table tbody .event{
     background: .colour(table-header)[];
+}
+
+.header-team{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 25px 25px 25px;
+        gap:5px;
+    &.p1{
+        justify-content: end;
+    }
+    &.p2{
+        justify-content: start;
+    }
+    div{
+        grid-column: span 3;
+    }
 }
 
 .switch{
