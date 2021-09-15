@@ -10,7 +10,7 @@
             );
 html {
     background-color: .colour(html-bg)[];
-} 
+}
 
 body {
     max-width: 80ch;
@@ -83,12 +83,25 @@ tbody tr:last-of-type {
     border-bottom: 2px solid .colour(table-header)[];
 }
 
-a {
-    color: #CC8B00;
-}
-
 table tbody .event{
     background: .colour(table-header)[];
+}
+
+.yt_button {
+    background: url("ui_images/yt_button.png") no-repeat;
+    background-position: 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    width: 36px;
+    height: 25px;
+}
+
+.yt_button:hover {
+    background-position: 0 -25px;
+}
+
+.yt_button:active {
+    background-position: 0 -50px;
 }
 
 .switch{

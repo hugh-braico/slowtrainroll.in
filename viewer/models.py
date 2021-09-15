@@ -94,7 +94,7 @@ class Vod(models.Model):
         p2team = icon_html.format(self.p2char1) + \
                 (icon_html.format(self.p2char2) if self.p2char2 != "N" else "") + \
                 (icon_html.format(self.p2char3) if self.p2char3 != "N" else "")
-        link_html = f"<a href=\"{self.url}\">(Link)</a>"
+        link_html = f'<a href="{self.url}" class="yt_button"></a>'
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
                    f"<td class=\"team p1\">{p1team}</td>" \
