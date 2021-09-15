@@ -158,11 +158,12 @@ table tbody .event{
     img{
         height: 2rem;
         cursor: pointer;
-        &:hover{
-            opacity:1;
-        }
+        transition: opacity 0.2s ease;
         &:not(.light){
             opacity:0.2;
+        }
+        &:hover{
+            opacity:1;
         }
     }
 }
