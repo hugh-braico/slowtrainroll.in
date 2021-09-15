@@ -87,18 +87,18 @@ class Vod(models.Model):
     # HTML table row that displays all the info about this vod
     def table_row_html(self):
         # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
-        icon_html = '<img style="vertical-align:middle;" src="static/viewer/icons_charselect/{0}.png" height="25"> '
-        p1team = icon_html.format(self.p1char1) + \
+        icon_html = '<div class="icon {0}"></div>'
+        p1team =(icon_html.format(self.p1char3) if self.p1char3 != "N" else "") + \
                 (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
-                (icon_html.format(self.p1char3) if self.p1char3 != "N" else "")
+                 icon_html.format(self.p1char1)                
         p2team = icon_html.format(self.p2char1) + \
                 (icon_html.format(self.p2char2) if self.p2char2 != "N" else "") + \
                 (icon_html.format(self.p2char3) if self.p2char3 != "N" else "")
         link_html = f'<a href="{self.url}" class="yt_button"></a>'
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
-                   f"<td class=\"team p1\">{p1team}</td>" \
-                   f"<td class=\"team p2\">{p2team}</td>" \
+                   f"<td class=\"team p1\"><div class=\"container\">{p1team}</div></td>" \
+                   f"<td class=\"team p2\"><div class=\"container\">{p2team}</div></td>" \
                    f"<td class=\"name p2\">{self.p2name}</td>" \
                    f"<td class=\"link\">{link_html}</td>" \
                f"</tr>"

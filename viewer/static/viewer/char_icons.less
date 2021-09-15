@@ -1,0 +1,41 @@
+@char_list: AN BW BB CE DB EL FI FU MF PW PS PC RF SQ UM VA;
+
+.char(@char){
+    &.@{char}{
+        background-image: url('/static/viewer/icons_charselect/@{char}.png');
+    }
+}
+
+.team{
+    .container{
+        display:flex
+    };
+    &.p1 .container{
+        justify-content: flex-end;
+        .icon{
+            margin-left: 5px;
+        }
+    }
+    &.p2 .container{
+        justify-content: flex-start;
+        .icon{
+            margin-right: 5px;
+        }
+    }
+
+    .icon{
+        background-color: white;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        background-size: contain;
+        vertical-align: middle;
+
+        .loop(length(@char_list));
+        .loop(@i) when (@i > 0) {
+            .loop((@i - 1));
+
+            .char(extract(@char_list, @i));
+        }
+    }
+}
