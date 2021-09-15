@@ -86,12 +86,14 @@ class Vod(models.Model):
 
     # HTML table row that displays all the info about this vod
     def table_row_html(self):
-        p1team =f"{self.p1char1}" + \
-               (f"/{self.p1char2}"  if self.p1char2 != "N" else "") + \
-               (f"/{self.p1char3}" if self.p1char3 != "N" else "")
-        p2team =f"{self.p2char1}" + \
-               (f"/{self.p2char2}"  if self.p2char2 != "N" else "") + \
-               (f"/{self.p2char3}" if self.p2char3 != "N" else "")
+        # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
+        icon_html = '<img src="static/viewer/icons_charselect/{0}.png" height="25"> '
+        p1team = icon_html.format(self.p1char1) + \
+                (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
+                (icon_html.format(self.p1char3) if self.p1char3 != "N" else "")
+        p2team = icon_html.format(self.p2char1) + \
+                (icon_html.format(self.p2char2) if self.p2char2 != "N" else "") + \
+                (icon_html.format(self.p2char3) if self.p2char3 != "N" else "")
         link_html = f"<a href=\"{self.url}\">(Link)</a>"
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
