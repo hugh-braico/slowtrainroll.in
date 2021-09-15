@@ -88,9 +88,9 @@ class Vod(models.Model):
     def table_row_html(self):
         # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
         icon_html = '<div class="icon {0}"></div>'
-        p1team = icon_html.format(self.p1char1) + \
+        p1team =(icon_html.format(self.p1char3) if self.p1char3 != "N" else "") + \
                 (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
-                (icon_html.format(self.p1char3) if self.p1char3 != "N" else "")
+                 icon_html.format(self.p1char1)                
         p2team = icon_html.format(self.p2char1) + \
                 (icon_html.format(self.p2char2) if self.p2char2 != "N" else "") + \
                 (icon_html.format(self.p2char3) if self.p2char3 != "N" else "")
