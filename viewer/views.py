@@ -21,7 +21,14 @@ def index(request):
         form = FilterForm()
     # Finally, order the results by newest first and return
     vods = vods.order_by('-date')
-    return render(request, 'viewer/index.html', {'vods': vods, 'form': form})
+    
+    # Read icon_dir from the cookies, use a default value if not found, and validate
+    # TODO: Store the icon dir list in some config/setting so it's not hardcoded in two different places and is easy to update
+    icon_dir = request.COOKIES.get('icon_dir', 'charselect')
+    if icon_dir not in ['charselect', 'emoji', 'sigil']:
+        icon_dir = 'charselect'
+
+    return render(request, 'viewer/index.html', {'vods': vods, 'form': form, 'icon_dir': icon_dir})
 
 
 # Function that returns a filtered QuerySet of vods according to user input

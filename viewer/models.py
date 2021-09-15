@@ -85,9 +85,9 @@ class Vod(models.Model):
         return f"""[{self.date.strftime('%Y-%m-%d')}, {self.event}] {self.p1name} vs {self.p2name}"""
 
     # HTML table row that displays all the info about this vod
-    def table_row_html(self):
+    def table_row_html(self, icon_dir):
         # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
-        icon_html = '<div class="icon {0}"></div>'
+        icon_html = '<div class="icon {0}" style="background-image:url(/static/viewer/icons_' + icon_dir + '/{0}.png)"></div>'
         p1team =(icon_html.format(self.p1char3) if self.p1char3 != "N" else "") + \
                 (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
                  icon_html.format(self.p1char1)                

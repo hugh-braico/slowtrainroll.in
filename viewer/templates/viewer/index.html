@@ -4,6 +4,7 @@
   <head>
     {% load compile_static %}
     {% load static %}
+    {% load render_vod_row %}
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'viewer/style.less'|compile %}">
@@ -42,7 +43,7 @@
         {% ifchanged v.event %}
           {{ v.table_header_html | safe }}
         {% endifchanged %}
-        {{ v.table_row_html | safe }}
+        {% render_vod_row v icon_dir %}
       {% endfor %}
       </table>
     {% else %}
