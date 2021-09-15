@@ -1,15 +1,69 @@
+<div class="char-switches">
+  <img class="char-icon-switch" data-icon_dir="charselect" src="/static/viewer/icons_charselect/BB.png">
+  <img class="char-icon-switch" data-icon_dir="emoji" src="/static/viewer/icons_emoji/BB.png">
+  <img class="char-icon-switch" data-icon_dir="sigil" src="/static/viewer/icons_sigil/BB.png">
+</div>
+
 <label class="switch">
   <input type="checkbox" id="light-mode-switch">
   <span class="slider"></span>
 </label>
 <script>
-  const mode = localStorage.getItem('lightmode') === 'true'
-  const html = document.querySelector('html')
+  //Why isn't this vanilla js?
+  //Copy and pasted from W3Schools
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
+  //Light mode stuff
+
+  //Read mode from local storage (boolean stored as string...)
+  const mode = localStorage.getItem('lightmode') === 'true'
+
+  //Set a value somewhere that CSS can select off of
+  const html = document.querySelector('html')
   html.dataset.theme = `theme-${mode ? 'dark' : 'light'}`
+
   document.getElementById("light-mode-switch").checked = mode
   document.getElementById("light-mode-switch").addEventListener("click", function() {
     html.dataset.theme = `theme-${this.checked ? 'dark' : 'light'}`
     localStorage.setItem('lightmode', this.checked)
+  })
+
+
+  //Char Icon stuff
+
+  const divs = document.querySelectorAll('.char-icon-switch')
+
+  //Use "charselect" if there is no cookie stored
+  const icon_dir = getCookie('icon_dir') || "charselect"
+  divs.forEach(div => {
+    const new_icon_dir = div.dataset.icon_dir
+    //Lighten the active button
+    if(icon_dir === new_icon_dir) {
+      div.classList.add('light')
+    }
+
+    div.addEventListener('click', e => {
+      if(new_icon_dir !== icon_dir) {
+        //Now was that so hard? Why can't reading a cookie be this easy
+        //This looks like we're overwriting every cookie but the browser does some magic to make it only set 'icon_dir'
+        document.cookie = "icon_dir=" + new_icon_dir
+        location.reload(true)
+      }
     })
+  })
+
 </script>
