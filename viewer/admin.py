@@ -57,7 +57,7 @@ def parse_vods_from_csv(f):
 
         # Restrict player names and events to a sane set of characters
         for pname in ['p1name', 'p2name', 'event']:
-            if not re.fullmatch('[a-zA-Z0-9-_&%;:?, ]+', temp_row[pname]):
+            if not re.fullmatch('[a-zA-Z0-9-_&%;:?,\. ]+', temp_row[pname]):
                 raise ValueError(f"""ERROR: row {row_number}: invalid {pname} '{html.escape(temp_row[pname])}'""")
 
         # Check every character in each team is a valid character
