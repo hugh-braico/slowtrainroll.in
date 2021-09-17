@@ -40,7 +40,7 @@
           <th>VOD</th>
         </tr>
       {% for v in vods %}
-        {% ifchanged v.event %}
+        {% ifchanged v.event v.date %}
           {{ v.table_header_html | safe }}
         {% endifchanged %}
         {% render_vod_row v icon_dir %}
