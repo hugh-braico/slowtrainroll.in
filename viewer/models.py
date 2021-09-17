@@ -114,7 +114,7 @@ class Vod(models.Model):
     # HTML table header that displays info about the event this vod is a part of
     # (Called whenever the event name changes during the loop)
     def table_header_html(self):
-        formatted_date = f"{self.date.strftime('%Y-%m-%d')}"
+        formatted_date = f"{self.date.strftime('%-d %b %Y')}"
         event = self.event.replace("Skullgirls OCE ", "")
         return f"<tr class=\"event\">" \
                f"<th colspan=\"4\" class=\"name\">{event}</th>" \

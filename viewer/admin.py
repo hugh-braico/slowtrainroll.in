@@ -57,7 +57,7 @@ def parse_vods_from_csv(f):
 
         # Restrict player names and events to a sane set of characters
         for pname in ['p1name', 'p2name', 'event']:
-            if not re.fullmatch('[a-zA-Z0-9-_&%;:?, ]+', temp_row[pname]):
+            if not re.fullmatch('[a-zA-Z0-9-_&%;:?,\. ]+', temp_row[pname]):
                 raise ValueError(f"""ERROR: row {row_number}: invalid {pname} '{html.escape(temp_row[pname])}'""")
 
         # Check every character in each team is a valid character
@@ -65,6 +65,18 @@ def parse_vods_from_csv(f):
         for char in ['p1char1', 'p1char2', 'p1char3', 'p2char1', 'p2char2', 'p2char3']: 
             if temp_row[char] not in valid_characters:
                 raise ValueError(f"""ERROR: row {row_number}: invalid {char} '{html.escape(temp_row[char])}'""")
+
+        # Check for valid team structure
+        for char in [['p1char1', 'p1char2', 'p1char3'], ['p2char1', 'p2char2', 'p2char3']]:
+            # Check for duplicate non-N characters
+            if (temp_row[char[0]] == temp_row[char[1]] and temp_row[char[0]] != 'N') or \
+               (temp_row[char[0]] == temp_row[char[2]] and temp_row[char[0]] != 'N') or \
+               (temp_row[char[1]] == temp_row[char[2]] and temp_row[char[1]] != 'N'):
+                raise ValueError(f"""ERROR: row {row_number}: duplicate characters in team '{temp_row[char[0]]}/{temp_row[char[1]]}/{temp_row[char[2]]}'""")
+            # Check for N's appearing before non-N's
+            if (temp_row[char[0]] == 'N') or \
+               (temp_row[char[1]] == 'N' and temp_row[char[2]] != 'N'):
+                raise ValueError(f"""ERROR: row {row_number}: invalid team '{temp_row[char[0]]}/{temp_row[char[1]]}/{temp_row[char[2]]}'""")
 
         # Check the regions are all valid places on Earth to live in
         if temp_row['region'] not in region_list:
