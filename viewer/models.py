@@ -22,6 +22,8 @@ character_choices = [
     ("VA", "Valentine")
 ]
 
+character_dict = dict(character_choices)
+
 # list of regions (Following the same naming as TWB)
 region_list = [
     "Europe", 
@@ -84,16 +86,22 @@ class Vod(models.Model):
     def __str__(self):
         return f"""[{self.date.strftime('%Y-%m-%d')}, {self.event}] {self.p1name} vs {self.p2name}"""
 
+    def team_cell_html(self, team, icon_dir):
+        team = filter(lambda x: x != "N", team)
+        return "".join(self.team_icon_html(char, icon_dir) for char in team)
+    
+    def team_icon_html(self, char, icon_dir):
+        # Avoid key error
+        if char in character_dict:
+            return f'<span class="icon {char}" style="background-image:url(/static/viewer/icons_{icon_dir}/{char}.png)" role="img" aria-label="{character_dict[char]}" title="{character_dict[char]}"></span>'
+        else:
+            return ''
+
     # HTML table row that displays all the info about this vod
     def table_row_html(self, icon_dir):
         # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
-        icon_html = '<div class="icon {0}" style="background-image:url(/static/viewer/icons_' + icon_dir + '/{0}.png)"></div>'
-        p1team =(icon_html.format(self.p1char3) if self.p1char3 != "N" else "") + \
-                (icon_html.format(self.p1char2) if self.p1char2 != "N" else "") + \
-                 icon_html.format(self.p1char1)                
-        p2team = icon_html.format(self.p2char1) + \
-                (icon_html.format(self.p2char2) if self.p2char2 != "N" else "") + \
-                (icon_html.format(self.p2char3) if self.p2char3 != "N" else "")
+        p1team = self.team_cell_html([self.p1char1, self.p1char2, self.p1char3], icon_dir)
+        p2team = self.team_cell_html([self.p2char1, self.p2char2, self.p2char3], icon_dir)
         link_html = f'<a href="{self.url}" class="yt_button"></a>'
         return f"<tr>" \
                    f"<td class=\"name p1\">{self.p1name}</td>" \
