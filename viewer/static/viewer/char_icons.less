@@ -1,15 +1,15 @@
 .team{
     .container{
-        display:flex
+        display:flex;
+        justify-content: flex-start;
     };
     &.p1 .container{
-        justify-content: flex-end;
+        flex-direction: row-reverse;
         .icon{
             margin-left: 5px;
         }
     }
     &.p2 .container{
-        justify-content: flex-start;
         .icon{
             margin-right: 5px;
         }
