@@ -91,7 +91,7 @@ def parse_vods_from_csv(f):
             raise ValueError(f"""ERROR: row {row_number}: invalid netplay flag '{html.escape(temp_row['netplay'])}'""")
 
         # Convert netplay flag 0/1 to false/true
-        temp_row['netplay'] = (temp_row['netplay'] == 1)
+        temp_row['netplay'] = (temp_row['netplay'] == '1')
 
         # Parse out the date field from string
         temp_row['date'] = datetime.strptime(temp_row['date'], '%d/%m/%Y').date()
