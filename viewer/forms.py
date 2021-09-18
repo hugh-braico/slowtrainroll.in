@@ -1,4 +1,4 @@
-import html
+from urllib.parse import urlencode
 
 from django import forms
 from django.core.exceptions import ValidationError
@@ -71,7 +71,7 @@ def clean_filter_url_parameters(filter_dict):
     ]
     if non_default_values:
         # If there are any non-default arguments, format it up
-        return "/?" + "&".join([f"{field}={html.escape(value)}" for (field, value) in non_default_values])
+        return "/?" + urlencode(non_default_values)
     else:
         # If empty for whatever reason, just go back to the index
         return "/"
