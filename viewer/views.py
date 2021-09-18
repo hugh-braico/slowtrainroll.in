@@ -1,10 +1,10 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import FormView
 
 from .models import Vod, csv_header
-from .forms import FilterForm
+from .forms import FilterForm, is_clean_filter, clean_filter_url_parameters
 
 
 # Return a list of vods that the user is interested in
@@ -12,9 +12,13 @@ from .forms import FilterForm
 def index(request):
     # If the user used the search form:
     if request.GET:
-        # Filter vods + pre-fill the filter form with previous selections
-        vods = filtered_vods(request.GET)
+        # Redirect to a clean URL with empty/default parameters removed
+        if not is_clean_filter(request.GET):
+            return redirect(clean_filter_url_parameters(request.GET))
+        # Pre-fill the filter form with previous selections
         form = FilterForm(request.GET)
+        # If the form is valid filter the vods, else return an empty result
+        vods = (filtered_vods(request.GET) if form.is_valid() else Vod.objects.none())
     else:
         # Otherwise, get ALL vods + return an empty filter form
         vods = Vod.objects.all()
@@ -107,9 +111,15 @@ def filtered_vods(filter_dict):
             vods1 = vods1.filter(p2char1=p2char3) | vods1.filter(p2char2=p2char3) | vods1.filter(p2char3=p2char3)
             vods2 = vods2.filter(p1char1=p2char3) | vods2.filter(p1char2=p2char3) | vods2.filter(p1char3=p2char3)
 
-    # If I could be bothered, here is where I would count how many N's were
-    # selected, and make sure the teams have at least that many. Right now eg.
-    # FI/N/N will match FI/X/N is order is unchecked, which is not very good
+    # Enforce team sizes when order is unchecked
+    # ie. don't allow a filter of "FI/N/N" to match a team of FI/*/N
+    if not team_order_matters:
+        if p1char2 == 'N' and p1char3 == 'N':
+            vods1 = vods1.filter(p1char2='N').filter(p1char3='N')
+            vods2 = vods2.filter(p2char2='N').filter(p2char3='N')
+        if p2char2 == 'N' and p2char3 == 'N':
+            vods1 = vods1.filter(p2char2='N').filter(p2char3='N')
+            vods2 = vods2.filter(p1char2='N').filter(p1char3='N')
 
     # Combine the "A vs B" and "B vs A" cases together at the end
     return vods1 | vods2
