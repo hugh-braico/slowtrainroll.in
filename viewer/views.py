@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.edit import FormView
 
-from .models import Vod
+from .models import Vod, csv_header
 from .forms import FilterForm
 
 
@@ -29,6 +29,13 @@ def index(request):
         icon_dir = 'charselect'
 
     return render(request, 'viewer/index.html', {'vods': vods, 'form': form, 'icon_dir': icon_dir})
+
+
+# Return a plain, csv-formatted page of every vod that can easily be used for backups
+def csv(request):
+    vods = Vod.objects.all().order_by('-date')
+    output = csv_header() + "\n" + "\n".join([v.to_csv_row() for v in vods])
+    return HttpResponse(output, content_type='text/plain')
 
 
 # Function that returns a filtered QuerySet of vods according to user input
