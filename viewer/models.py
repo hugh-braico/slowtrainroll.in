@@ -54,9 +54,6 @@ version_list = [
     # Note: there are no "Vanilla" vods on TWB, SDE is the earliest
 ]
 
-# TODO: generate (and cache) a distinct, alphabetised list of all events
-event_list = []
-
 # all vod column values
 required_columns = [
     'event', 'date', 'region', 'netplay', 'version',
@@ -106,7 +103,6 @@ class Vod(models.Model):
 
     # HTML table row that displays all the info about this vod
     def table_row_html(self, icon_dir):
-        # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
         p1team = self.team_cell_html([self.p1char1, self.p1char2, self.p1char3], icon_dir)
         p2team = self.team_cell_html([self.p2char1, self.p2char2, self.p2char3], icon_dir)
         link_html = f'<a href="{self.url}" class="yt_button"></a>'
