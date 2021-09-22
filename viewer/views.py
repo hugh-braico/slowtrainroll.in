@@ -35,6 +35,12 @@ def index(request):
     return render(request, 'viewer/index.html', {'vods': vods, 'form': form, 'icon_dir': icon_dir})
 
 
+# simple static about page
+# There's probably a way to render the template directly without a view, but w/e
+def about(request):
+    return render(request, 'viewer/about.html')
+
+
 # Return a plain, csv-formatted page of every vod that can easily be used for backups
 def csv(request):
     vods = Vod.objects.all().order_by('-date')
