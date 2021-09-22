@@ -7,7 +7,8 @@
                 body-bg         white       #191a1b,
                 table-header    #cdcdcd     #111111,
                 table-row-even  #f3f3f3     #202123,
-                text            black       #e7e6e3;
+                text            black       #e7e6e3,
+                link            blue        lightskyblue;
             );
 html {
     background-color: .colour(html-bg)[];
@@ -21,6 +22,7 @@ body {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     background-color: .colour(body-bg)[];
     text-align: center;
+    color: .colour(text)[];
 }
 
 form {
@@ -57,7 +59,7 @@ th, td {
     vertical-align: middle;
 }
 
-th, td, label, h1, h2, h3, h4, strong, input, select{
+input, select{
     color: .colour(text)[];
 }
 
@@ -90,7 +92,7 @@ tbody tr:last-of-type {
 }
 
 a {
-    color: #CC8B00;
+    color: .colour(link)[];
 }
 
 table tbody .event{

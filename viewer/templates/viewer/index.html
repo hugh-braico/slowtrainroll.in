@@ -5,11 +5,7 @@
     {% load compile_static %}
     {% load static %}
     {% load render_vod_row %}
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'viewer/style.less'|compile %}">
-    <meta charset="utf-8">
-    <title>slowtrainroll.in</title>
+    {% include "viewer/head.html" %}
   </head>
 
   <body>
@@ -51,5 +47,7 @@
       <p>😔 No results found. </p>
     {% endif %}
     
+    <hr>
+    <p><a href="{% url 'viewer:about' %}">About / Contact</a> 
   </body>
 </html>
