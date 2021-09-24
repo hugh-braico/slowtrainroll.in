@@ -54,9 +54,6 @@ version_list = [
     # Note: there are no "Vanilla" vods on TWB, SDE is the earliest
 ]
 
-# TODO: generate (and cache) a distinct, alphabetised list of all events
-event_list = []
-
 # all vod column values
 required_columns = [
     'event', 'date', 'region', 'netplay', 'version',
@@ -64,6 +61,13 @@ required_columns = [
     'p2name', 'p2char1', 'p2char2', 'p2char3',
     'url'
 ]
+
+# Standard TWB csv header
+def csv_header():
+    return "Event,Date,Region,Netplay,Version," \
+           "P1Name,P1Char1,P1Char2,P1Char3," \
+           "P2Name,P2Char1,P2Char2,P2Char3,URL"
+
 
 # Represents one link to a vod/timestamp + relevant information about the set
 class Vod(models.Model): 
@@ -99,7 +103,6 @@ class Vod(models.Model):
 
     # HTML table row that displays all the info about this vod
     def table_row_html(self, icon_dir):
-        # TODO - parametrise icon type (charselect/sigil/emoji), UI toggle
         p1team = self.team_cell_html([self.p1char1, self.p1char2, self.p1char3], icon_dir)
         p2team = self.team_cell_html([self.p2char1, self.p2char2, self.p2char3], icon_dir)
         link_html = f'<a href="{self.url}" class="yt_button"></a>'
@@ -110,13 +113,27 @@ class Vod(models.Model):
                    f"<td class=\"name p2\">{self.p2name}</td>" \
                    f"<td class=\"link\">{link_html}</td>" \
                f"</tr>"
-            
+
     # HTML table header that displays info about the event this vod is a part of
     # (Called whenever the event name changes during the loop)
     def table_header_html(self):
-        formatted_date = f"{self.date.strftime('%-d %b %Y')}"
+        formatted_date = self.date.strftime('%-d %b %Y')
         event = self.event.replace("Skullgirls OCE ", "")
         return f"<tr class=\"event\">" \
                f"<th colspan=\"4\" class=\"name\">{event}</th>" \
                f"<th class=\"date\">{formatted_date}</th>" \
                f"</tr>"
+
+    # Returns a csv row representation of a Vod
+    def to_csv_row(self):
+        # Format date as DD/MM/YYYY
+        formatted_date = self.date.strftime('%d/%m/%Y')
+        # Encapsulate any comma-containing fields in ""
+        event   = (f"\"{self.event}\""  if "," in self.event  else self.event)
+        p1name  = (f"\"{self.p1name}\"" if "," in self.p1name else self.p1name)
+        p2name  = (f"\"{self.p2name}\"" if "," in self.p2name else self.p2name)
+        # Convert netplay flag to binary
+        netplay = ("1" if self.netplay else "0")
+        return f"{event},{formatted_date},{self.region},{netplay},{self.version}," \
+               f"{p1name},{self.p1char1},{self.p1char2},{self.p1char3}," \
+               f"{p2name},{self.p2char1},{self.p2char2},{self.p2char3},{self.url}"

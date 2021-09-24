@@ -1,0 +1,7 @@
+{% load compile_static %}
+{% load static %}
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'viewer/style.less'|compile %}">
+<meta charset="utf-8">
+<title>slowtrainroll.in</title>
