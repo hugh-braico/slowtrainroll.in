@@ -1,7 +1,7 @@
 <div class="char-switches">
   {% with 'charselect sigil emoji' as list%}
     {% for icon_set in list.split %}
-      <img class="char-icon-switch" data-icon_dir="{{ icon_set }}" src="/static/viewer/icons_{{icon_set}}/BB.png">
+      <img class="char-icon-switch{% if icon_dir == icon_set %} light{% endif %}" data-icon_dir="{{ icon_set }}" src="/static/viewer/icons_{{icon_set}}/BB.png">
     {% endfor %}
   {% endwith %}
 </div>
