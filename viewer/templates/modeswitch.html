@@ -1,7 +1,9 @@
 <div class="char-switches">
-  <img class="char-icon-switch" data-icon_dir="charselect" src="/static/viewer/icons_charselect/BB.png">
-  <img class="char-icon-switch" data-icon_dir="sigil" src="/static/viewer/icons_sigil/BB.png">
-  <img class="char-icon-switch" data-icon_dir="emoji" src="/static/viewer/icons_emoji/BB.png">
+  {% with 'charselect sigil emoji' as list%}
+    {% for icon_set in list.split %}
+      <img class="char-icon-switch" data-icon_dir="{{ icon_set }}" src="/static/viewer/icons_{{icon_set}}/BB.png">
+    {% endfor %}
+  {% endwith %}
 </div>
 
 <label class="switch">
@@ -30,7 +32,7 @@
   //Light mode stuff
 
   //Read mode from local storage (boolean stored as string...)
-  const mode = localStorage.getItem('lightmode') === 'true'
+  const mode = getCookie('lightmode') === 'true'
 
   //Set a value somewhere that CSS can select off of
   const html = document.querySelector('html')
@@ -39,7 +41,7 @@
   document.getElementById("light-mode-switch").checked = mode
   document.getElementById("light-mode-switch").addEventListener("click", function() {
     html.dataset.theme = `theme-${this.checked ? 'dark' : 'light'}`
-    localStorage.setItem('lightmode', this.checked)
+    document.cookie = "lightmode=" + this.checked
   })
 
 
@@ -51,11 +53,6 @@
   const icon_dir = getCookie('icon_dir') || "charselect"
   divs.forEach(div => {
     const new_icon_dir = div.dataset.icon_dir
-    //Lighten the active button
-    if(icon_dir === new_icon_dir) {
-      div.classList.add('light')
-    }
-
     div.addEventListener('click', e => {
       if(new_icon_dir !== icon_dir) {
         //Now was that so hard? Why can't reading a cookie be this easy

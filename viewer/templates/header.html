@@ -3,13 +3,19 @@
 
 <!DOCTYPE html>
 
-<html>
+<html class='prevent-transitions'>
   <head>
+    <meta charset="utf-8">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'viewer/style.less'|compile %}">
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'viewer/style.less'|compile %}">
     <title>slowtrainroll.in</title>
 </head>
 <body>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    let node = document.querySelector('.prevent-transitions');
+    node.classList.remove('prevent-transitions');
+  });
+</script>
 {% include "modeswitch.html" %}

@@ -175,12 +175,17 @@ table tbody .event{
     img{
         height: 2rem;
         cursor: pointer;
-        transition: opacity 0.2s ease;
-        &:not(.light){
-            opacity:0.2;
+        opacity:0.2;
+        transition: all 0.4s ease;
+        &.light{
+            opacity:1;
         }
         &:hover{
             opacity:1;
         }
     }
+}
+
+.prevent-transitions{
+    transition: none !important;
 }
