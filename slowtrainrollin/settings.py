@@ -31,14 +31,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ['www.slowtrainroll.in', 'slowtrainroll.in']
 
-# TODO get HTTPS working first, then 
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
-# SECURE_HSTS_SECONDS = 60
-
 # Application definition
-
 INSTALLED_APPS = [
     'viewer.apps.ViewerConfig',
     'django.contrib.admin',
