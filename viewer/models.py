@@ -34,13 +34,10 @@ region_list = [
 ]
 
 # list of Skullgirls versions (Following the same naming as TWB)
+# https://github.com/Servan42/TWB_Parser/blob/master/List_of_CharactersCode_Regions_Versions.md
 version_list = [
-    # These three don't exist on TWB as of writing this (Sep 2021)
-    # I'm going with the names that are on Mizuumi Wiki
-    'Annie Release Update',
+    'Annie Patch',
     'Annie Patch Beta',
-    'Combo Breaker 2020 Update',
-    # Everything below this point is set by TWB's precedent
     '2E+ Final',
     '2E+ (old UD)',
     '2E', # aka. Robo-Fortune Patch
@@ -126,8 +123,8 @@ class Vod(models.Model):
 
     # Returns a csv row representation of a Vod
     def to_csv_row(self):
-        # Format date as DD/MM/YYYY
-        formatted_date = self.date.strftime('%d/%m/%Y')
+        # Format date as YYYY-MM-DD
+        formatted_date = self.date.strftime('%Y-%m-%d')
         # Encapsulate any comma-containing fields in ""
         event   = (f"\"{self.event}\""  if "," in self.event  else self.event)
         p1name  = (f"\"{self.p1name}\"" if "," in self.p1name else self.p1name)
