@@ -1,15 +1,5 @@
-<div class="char-switches">
-  {% with 'charselect sigil emoji' as list%}
-    {% for icon_set in list.split %}
-      <img class="char-icon-switch{% if icon_dir == icon_set %} light{% endif %}" data-icon_dir="{{ icon_set }}" src="/static/viewer/icons_{{icon_set}}/BB.png">
-    {% endfor %}
-  {% endwith %}
-</div>
 
-<label class="switch">
-  <input type="checkbox" id="light-mode-switch">
-  <span class="slider"></span>
-</label>
+<!-- header JS -->  
 <script>
   //Why isn't this vanilla js?
   //Copy and pasted from W3Schools
@@ -62,5 +52,4 @@
       }
     })
   })
-
 </script>

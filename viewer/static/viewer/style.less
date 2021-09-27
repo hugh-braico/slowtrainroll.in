@@ -1,5 +1,6 @@
 @import 'helpers';
 @import 'char_icons';
+@import 'header';
 
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500.css';
 //              colour variabl  Light mode  Dark mode
@@ -10,19 +11,33 @@
                 text            black       #e7e6e3,
                 link            blue        lightskyblue;
             );
+
+@header-height: calc(4rem - 3px);
+
 html {
     background-color: .colour(html-bg)[];
+    color: .colour(text)[];
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 } 
 
-body {
+body{
+    margin:0;
+    margin-top: @header-height;
+}
+
+//Remove default link styling
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+.content {
     max-width: 80ch;
     padding: 2ch;
     margin: auto;
     line-height: 1;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     background-color: .colour(body-bg)[];
     text-align: center;
-    color: .colour(text)[];
 }
 
 form {
@@ -91,8 +106,10 @@ tbody tr:last-of-type {
     border-bottom: 2px solid .colour(table-header)[];
 }
 
-a {
+
+.content a {
     color: .colour(link)[];
+    text-decoration: underline;
 }
 
 table tbody .event{
@@ -130,66 +147,6 @@ table tbody .event{
 
 .yt_button:active {
     background-position: 0 -50px;
-}
-
-.switch{
-    position:fixed;
-    top:0;
-    right:0;
-    width:2rem;
-    height:1rem;
-    margin:1rem;
-    & input {
-        width:0;
-    }
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height:100%;
-        width:100%;
-        background-color: .colour(table-row-even)[];;
-        -webkit-transition: .4s;
-        transition: .4s;
-        &:before {
-            position: absolute;
-            content: "";
-            height: 100%;
-            width: 50%;
-            left:0;
-            bottom:0;
-            background-color: .colour(text)[];;
-            -webkit-transition: .4s all ease;
-            transition: .4s all ease;
-          }
-      }
-    input:checked + .slider {
-        &:before{
-            transform: translateX(100%);
-        }
-    }
-}
-
-.char-switches{
-    position:fixed;
-    top: 0;
-    right: 4rem;
-    margin: 1rem;
-    img{
-        height: 2rem;
-        cursor: pointer;
-        opacity:0.2;
-        transition: all 0.4s ease;
-        &.light{
-            opacity:1;
-        }
-        &:hover{
-            opacity:1;
-        }
-    }
 }
 
 .prevent-transitions{
