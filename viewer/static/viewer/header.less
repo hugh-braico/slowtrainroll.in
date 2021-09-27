@@ -1,0 +1,93 @@
+header {
+    position:fixed;
+    top:0;
+    height: @header-height;
+    width:100%;
+    background-color: .colour(table-row-even)[];
+    display:flex;
+    align-items: center;
+    nav{
+        display:flex;
+        align-items: center;
+        height:@header-height;
+        a{
+            height:100%;
+            font-size:1.25em;
+            font-weight: bold;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid .colour(table-border)[];;
+            &:hover{
+                background-color: .colour(table-header)[];;
+            }
+        }
+    
+        a:first-child{
+            font-size: 2em;
+            font-weight: bold;
+        }
+    
+    }
+
+    & *{
+        display:inline;
+    }
+
+    .char-switches{
+        margin-left:auto;
+        img{
+            height: 2rem;
+            cursor: pointer;
+            opacity:0.2;
+            transition: all 0.4s ease;
+            &.light{
+                opacity:1;
+            }
+            &:hover{
+                opacity:1;
+            }
+        }
+    }
+
+    .lightmode{
+        position: relative;
+        width: 4rem;
+        height: 2rem;
+        margin-left:1rem;
+        & input {
+            width:0;
+            height:0;
+            display:none;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top:50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            height:2rem;
+            width:4rem;
+            background-color: .colour(html-bg)[];;
+            -webkit-transition: .4s;
+            transition: .4s;
+            &:before {
+                position: absolute;
+                content: "";
+                height: 2rem;
+                width: 2rem;
+                left: 0;
+                bottom: 0;
+                background-color: .colour(text)[];;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+        }
+        input:checked + .slider {
+            &:before{
+                transform: translateX(100%);
+            }
+        }
+    }
+}

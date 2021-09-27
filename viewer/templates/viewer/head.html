@@ -1,7 +1,49 @@
 {% load compile_static %}
 {% load static %}
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'viewer/style.less'|compile %}">
-<meta charset="utf-8">
-<title>slowtrainroll.in</title>
+
+<!DOCTYPE html>
+
+<html class='prevent-transitions'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'viewer/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'viewer/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'viewer/style.less'|compile %}">
+    <title>slowtrainroll.in</title>
+</head>
+<body>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    let node = document.querySelector('.prevent-transitions');
+    node.classList.remove('prevent-transitions');
+  });
+</script>
+
+<header>
+
+  <!-- Links -->
+  <nav>
+    <a href="/"><span>🎷slowtrainroll.in</span></a>
+    <a href="{% url 'viewer:about' %}"><span>About / Contact</span></a>
+  </nav>
+
+  <!-- Character Icon Switches -->
+  <div class="char-switches">
+    {% with 'charselect sigil emoji' as list%}
+      {% for icon_set in list.split %}
+        <img class="char-icon-switch{% if icon_dir == icon_set %} light{% endif %}" data-icon_dir="{{ icon_set }}" src="/static/viewer/icons_{{icon_set}}/BB.png">
+      {% endfor %}
+    {% endwith %}
+  </div>
+
+
+  <!-- Light mode switch-->
+  <label class="lightmode">
+    <input type="checkbox" id="light-mode-switch">
+    <span class="slider"></span>
+  </label>
+
+</header>
+
+
+{% include "viewer/headerJS.html" %}

@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-
-<html>
-  <head>
-    {% include "viewer/head.html" %}
-    {% load static %}
-  </head>
-
-  <body>
-    {% include "modeswitch.html" %}
-    <h1>🎷slowtrainroll.in</h1>
-
+{% load static %}
+{% include "viewer/head.html" %}
+  <div class="content">
     <div style="text-align: left;">
     <p>slowtrainroll.in is a VOD database for Skullgirls Oceania, inspired by
     <a href="https://tunawithbacon.com/">tunawithbacon</a>.</p> 
@@ -69,6 +60,7 @@
     </div>
 
     <hr>
-    <p><a href="{% url 'viewer:index' %}">Back to the main page</a> 
+    <p><a href="{% url 'viewer:index' %}">Back to the main page</a>
+    </div>
   </body>
 </html>
