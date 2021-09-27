@@ -6,6 +6,7 @@
 //              colour variabl  Light mode  Dark mode
 .init-colours(  html-bg         lightgray   black,
                 body-bg         white       #191a1b,
+                table-border    #3a3e41     #3a3e41,
                 table-header    #cdcdcd     #111111,
                 table-row-even  #f3f3f3     #202123,
                 text            black       #e7e6e3,
@@ -95,7 +96,7 @@ th {
 }
 
 tbody tr {
-    border-bottom: 1px solid #3a3e41;
+    border-bottom: 1px solid .colour(table-border)[];;
 }
 
 tbody tr:nth-of-type(even) {

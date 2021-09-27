@@ -17,8 +17,7 @@ header {
             padding: 0 1rem;
             display: flex;
             align-items: center;
-            transition: .4s background-color ease;
-            border-right: 1px solid .colour(text)[];;
+            border-right: 1px solid .colour(table-border)[];;
             &:hover{
                 background-color: .colour(table-header)[];;
             }
@@ -54,27 +53,30 @@ header {
     .lightmode{
         position: relative;
         width: 4rem;
+        height: 2rem;
         margin-left:1rem;
         & input {
             width:0;
+            height:0;
+            display:none;
         }
         .slider {
             position: absolute;
             cursor: pointer;
-            top: 0;
+            top:50%;
+            transform: translateY(-50%);
             left: 0;
             right: 0;
-            bottom: 0;
-            height:100%;
-            width:3.5rem;
+            height:2rem;
+            width:4rem;
             background-color: .colour(html-bg)[];;
             -webkit-transition: .4s;
             transition: .4s;
             &:before {
                 position: absolute;
                 content: "";
-                height: 100%;
-                width: 1.75rem;
+                height: 2rem;
+                width: 2rem;
                 left: 0;
                 bottom: 0;
                 background-color: .colour(text)[];;
