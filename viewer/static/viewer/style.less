@@ -153,3 +153,12 @@ table tbody .event{
 .prevent-transitions{
     transition: none !important;
 }
+
+@media only screen and (max-width: 1680px) {
+    th{
+        top: @header-height ;
+    }
+    .event th{
+        top: calc(@header-height + 40px);
+    }
+}
