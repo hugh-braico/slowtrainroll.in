@@ -12,7 +12,7 @@
     <meta content="slowtrainroll.in" property="og:title" />
     <meta content="Skullgirls OCE VOD archive" property="og:description" />
     <meta content="https://slowtrainroll.in" property="og:url" />
-    <meta content="{% static 'viewer/icons_sigil/BB.png' %}" property="og:image" />
+    <meta content="{% static 'viewer/ui_images/icon_str.png' %}" property="og:image" />
     <meta content="#EBA300" data-react-helmet="true" name="theme-color" />
     <title>slowtrainroll.in</title>
 </head>
@@ -28,7 +28,10 @@
 
   <!-- Links -->
   <nav>
-    <a href="/"><span>🎷slowtrainroll.in</span></a>
+    <a href="/">
+      <img src="{% static 'viewer/ui_images/icon_str.png' %}" style="vertical-align: middle; padding-right: 7px;" height=45>
+      <span>slowtrainroll.in</span>
+    </a>
     <a href="{% url 'viewer:about' %}"><span>About / Contact</span></a>
   </nav>
 
