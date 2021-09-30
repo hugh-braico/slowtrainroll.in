@@ -40,6 +40,9 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 SECRET_KEY*
+*COMPILED/
+/logs/
+/static/
 
 # pyenv
 .python-version
@@ -52,6 +55,3 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-# Compiled assets
-*COMPILED/
