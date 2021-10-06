@@ -22,7 +22,8 @@
   //Light mode stuff
 
   //Read mode from local storage (boolean stored as string...)
-  const mode = getCookie('lightmode') === 'true'
+  //"|| 'true'" to default to dark mode
+  const mode = (getCookie('lightmode') || 'true') === 'true'
 
   //Set a value somewhere that CSS can select off of
   const html = document.querySelector('html')
