@@ -36,6 +36,8 @@ region_list = [
 # list of Skullgirls versions (Following the same naming as TWB)
 # https://github.com/Servan42/TWB_Parser/blob/master/List_of_CharactersCode_Regions_Versions.md
 version_list = [
+    'Black Dahlia Patch Beta',
+    'Umbrella Patch',
     'Annie Patch',
     'Annie Patch Beta',
     '2E+ Final',
