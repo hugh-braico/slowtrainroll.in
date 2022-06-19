@@ -5,6 +5,7 @@ import datetime
 character_choices = [
     ( "N", "None"),
     ("AN", "Annie"),
+    ("BD", "Black Dahlia"),
     ("BW", "Beowulf"),
     ("BB", "Big Band"),
     ("CE", "Cerebella"),
@@ -36,7 +37,8 @@ region_list = [
 # list of Skullgirls versions (Following the same naming as TWB)
 # https://github.com/Servan42/TWB_Parser/blob/master/List_of_CharactersCode_Regions_Versions.md
 version_list = [
-    'Black Dahlia Patch Beta',
+    'Black Dahlia Patch',
+    'Black Dahlia Alpha',
     'Umbrella Patch',
     'Annie Patch',
     'Annie Patch Beta',
