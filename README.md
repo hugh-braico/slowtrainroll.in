@@ -63,6 +63,13 @@ Once HTTP looks good, use [Let's Encrypt Certbot](https://certbot.eff.org/) to
 generate SSL certs and then make sure it didn't do anything totally stupid to 
 your nginx.conf in the process (spoiler: it did)
 
+### Adding and exporting data
+
+The admin backend (`/admin`) has a page to add vods, and also bulk-upload vods
+via [TWB-style csv files](https://github.com/Servan42/TWB_Parser). 
+
+The `/backup.csv` page presents every vod in plaintext TWB csv format.
+
 ## Why is it called that?
 
 Big Band says it during his 
