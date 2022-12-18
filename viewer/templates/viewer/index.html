@@ -1,3 +1,11 @@
+<script>
+function addUrlParameter(name, value) {
+  var searchParams = new URLSearchParams(window.location.search)
+  searchParams.set(name, value)
+  window.location.search = searchParams.toString()
+}
+</script>
+
 {% load render_vod_row %}
 {% include "viewer/head.html" %}
 <div class="content">
@@ -17,7 +25,24 @@
     </fieldset>
     </form>
 
-    {% if vods %}
+    {% if page_obj %}
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+            <a style="cursor:pointer;" onclick="addUrlParameter('page', '1')">&laquo; first</a>
+            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.previous_page_number }}')">&lt; previous</a>
+          {% endif %}
+
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.next_page_number }}')">next &gt;</a>
+            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.paginator.num_pages }}')">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
       <table>
         <tr>
           <th>Player 1</th>
@@ -26,7 +51,7 @@
           <th>Player 2</th>
           <th>VOD</th>
         </tr>
-      {% for v in vods %}
+      {% for v in page_obj %}
         {% ifchanged v.event v.date %}
           {{ v.table_header_html | safe }}
         {% endifchanged %}
@@ -36,7 +61,7 @@
     {% else %}
       <p>😔 No results found. </p>
     {% endif %}
-    
+
     <hr>
     </div>
   </body>
