@@ -2,13 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import FormView
+from django.core.paginator import Paginator
 
 from .models import Vod, csv_header
 from .forms import FilterForm, is_clean_filter, clean_filter_url_parameters
 
 
 # Return a list of vods that the user is interested in
-# TODO: make this nice and paged
 def index(request):
     # If the user used the search form:
     if request.GET:
@@ -32,7 +32,18 @@ def index(request):
     if icon_dir not in ['charselect', 'emoji', 'sigil']:
         icon_dir = 'charselect'
 
-    return render(request, 'viewer/index.html', {'vods': vods, 'form': form, 'icon_dir': icon_dir})
+    # Only show 100 vods per page
+    paginator = Paginator(vods, 100)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context_dict = {
+        'form': form,
+        'icon_dir': icon_dir,
+        'page_obj': page_obj
+    }
+
+    return render(request, 'viewer/index.html', context_dict)
 
 
 # simple static about page
