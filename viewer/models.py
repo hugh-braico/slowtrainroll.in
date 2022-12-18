@@ -5,9 +5,9 @@ import datetime
 character_choices = [
     ( "N", "None"),
     ("AN", "Annie"),
-    ("BD", "Black Dahlia"),
     ("BW", "Beowulf"),
     ("BB", "Big Band"),
+    ("BD", "Black Dahlia"),
     ("CE", "Cerebella"),
     ("DB", "Double"),
     ("EL", "Eliza"),
