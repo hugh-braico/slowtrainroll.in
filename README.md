@@ -30,7 +30,7 @@ pip3 install -r requirements.txt
 sudo npm install less -g
 
 # Generate and save a secret key
-python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' > SECRET_KEY` 
+python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())' > SECRET_KEY
 
 # (Dev only) set a flag to run the dev server in debug mode
 export STR_DEBUG=True
