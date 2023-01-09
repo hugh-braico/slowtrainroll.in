@@ -28,19 +28,23 @@ function addUrlParameter(name, value) {
     {% if page_obj %}
       <div class="pagination">
         <span class="step-links">
-          {% if page_obj.has_previous %}
-            <a style="cursor:pointer;" onclick="addUrlParameter('page', '1')">&laquo; first</a>
-            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.previous_page_number }}')">&lt; previous</a>
-          {% endif %}
+          <div class="previous">
+            {% if page_obj.has_previous %}
+              <a onclick="addUrlParameter('page', '1')">«</a>
+              <a onclick="addUrlParameter('page', '{{ page_obj.previous_page_number }}')">‹</a>
+            {% endif %}
+          </div>
 
-          <span class="current">
+          <div class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-          </span>
+          </div>
 
-          {% if page_obj.has_next %}
-            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.next_page_number }}')">next &gt;</a>
-            <a style="cursor:pointer;" onclick="addUrlParameter('page', '{{ page_obj.paginator.num_pages }}')">last &raquo;</a>
-          {% endif %}
+          <div class="next">
+            {% if page_obj.has_next %}
+              <a onclick="addUrlParameter('page', '{{ page_obj.next_page_number }}')">›</a>
+              <a onclick="addUrlParameter('page', '{{ page_obj.paginator.num_pages }}')">»</a>
+            {% endif %}
+          </div>
         </span>
       </div>
       <table>
