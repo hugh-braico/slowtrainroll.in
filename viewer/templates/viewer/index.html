@@ -62,6 +62,27 @@ function addUrlParameter(name, value) {
         {% render_vod_row v icon_dir %}
       {% endfor %}
       </table>
+      <div class="pagination">
+        <span class="step-links">
+          <div class="previous">
+            {% if page_obj.has_previous %}
+              <a onclick="addUrlParameter('page', '1')">«</a>
+              <a onclick="addUrlParameter('page', '{{ page_obj.previous_page_number }}')">‹</a>
+            {% endif %}
+          </div>
+
+          <div class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </div>
+
+          <div class="next">
+            {% if page_obj.has_next %}
+              <a onclick="addUrlParameter('page', '{{ page_obj.next_page_number }}')">›</a>
+              <a onclick="addUrlParameter('page', '{{ page_obj.paginator.num_pages }}')">»</a>
+            {% endif %}
+          </div>
+        </span>
+      </div>
     {% else %}
       <p>😔 No results found. </p>
     {% endif %}
