@@ -44,6 +44,50 @@ a{
 form {
     display: inline-block;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    width: 50%;
+}
+
+fieldset {
+    margin:0;
+}
+
+.pagination{
+    width: 49.5%; //Looks better slightly smaller than the form
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.step-links{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    > div{
+        width: 90px;
+    }
+    a {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0 0.5rem;
+        font-size: 1.5rem;
+        line-height: 0.5;
+    }
+}
+
+.previous {
+    text-align: left;
+    a:first-child {
+        padding-left: 0;
+    }
+}
+
+.next {
+    text-align: right;
+
+    a:last-child {
+        padding-right: 0;
+    }
 }
 
 .errorlist {
@@ -108,7 +152,7 @@ tbody tr:last-of-type {
 }
 
 
-.content a {
+.content a.link {
     color: .colour(link)[];
     text-decoration: underline;
 }
