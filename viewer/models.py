@@ -119,7 +119,6 @@ class Vod(models.Model):
     # (Called whenever the event name changes during the loop)
     def table_header_html(self):
         formatted_date = self.date.strftime('%d %b %Y')
-        event = self.event.replace("Skullgirls OCE ", "")
         return f"<tr class=\"event\">" \
                f"<th colspan=\"4\" class=\"name\">{event}</th>" \
                f"<th class=\"date\">{formatted_date}</th>" \
