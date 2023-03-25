@@ -66,7 +66,13 @@ def filtered_vods(filter_dict):
 
     # Filter event
     event = filter_dict.get('event', "")
-    vods = vods.filter(event__icontains=event)
+    if event != '':
+        vods = vods.filter(event__icontains=event)
+
+    # Filter region
+    region = filter_dict.get('region', "")
+    if region not in ['', 'Any']:
+        vods = vods.filter(region__icontains=region)
 
     # If you want to add more filters (region, version, etc), 
     # do it here before it gets complicated!

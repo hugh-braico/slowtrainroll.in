@@ -10,6 +10,7 @@ class FilterForm(forms.Form):
     character_filters = [("Any", "Any")] + character_choices
     # Don't allow the user to select "None" for the first character
     first_character_filters = character_filters[:]
+    region_filters = [("Any", "Any")] + [(r,r) for r in region_list]
     first_character_filters.remove(("N", "None"))
     p1name    = forms.CharField(label='P1 name', required=False, max_length=32)
     p1char1   = forms.ChoiceField(label='P1 char 1', required=False, choices=first_character_filters)
@@ -20,6 +21,7 @@ class FilterForm(forms.Form):
     p2char2   = forms.ChoiceField(label='P2 char 2', required=False, choices=character_filters)
     p2char3   = forms.ChoiceField(label='P2 char 3', required=False, choices=character_filters)
     event     = forms.CharField(label='Event', required=False, max_length=64)
+    region    = forms.ChoiceField(label='Region', required=False, choices=region_filters)
     teamorder = forms.BooleanField(label='Team order matters?', required=False)
 
     # Validate data
@@ -49,6 +51,7 @@ default_form_values = [
     ("p2char2", "Any"),
     ("p2char3", "Any"),
     ("event", ""),
+    ("region", "Any"),
     ("teamorder", False)
 ]
 
