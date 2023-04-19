@@ -102,7 +102,7 @@ in plaintext TWB csv format.
 
 Big Band says it during his 
 [Take the A-Train](https://www.youtube.com/watch?v=cb2w2m1JmCY) special, and
-it's a reference to the jazz song
+it's a reference to the blues song
 [Train Kept A-Rollin'](https://en.wikipedia.org/wiki/Train_Kept_A-Rollin%27)
 by Tiny Bradshaw.
 
