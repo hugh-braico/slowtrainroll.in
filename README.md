@@ -101,12 +101,10 @@ in plaintext TWB csv format.
 ## Why the name slowtrainroll.in?
 
 Big Band says it during his 
-[Take the A-Train](https://www.youtube.com/watch?v=cb2w2m1JmCY) special 
-sometimes. I don't know if the voice line is a reference to anything specific.
-It's mentioned in
-[an Elton John song](https://www.youtube.com/watch?v=a_RFeNctFYM) but that
-doesn't seem like a fit for something Big Band would reference. If you
-find out why Big Band says it, please tell me.
+[Take the A-Train](https://www.youtube.com/watch?v=cb2w2m1JmCY) special, and
+it's a reference to the jazz song
+[Train Kept A-Rollin'](https://en.wikipedia.org/wiki/Train_Kept_A-Rollin%27)
+by Tiny Bradshaw.
 
 The other name contender was
 [hustlin.rocks](https://wiki.gbl.gg/w/Skullgirls/Cerebella#Supers) since that
