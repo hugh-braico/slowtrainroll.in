@@ -112,6 +112,9 @@ Then I should have the file uploaded to the site within a week or so.
 
 ## A note about automated timestamping
 
+Does your vod ALREADY HAVE TIMESTAMPS IN THE DESCRIPTION?
+Check out [this tool](https://github.com/hugh-braico/yt-timestamp-to-twb)!
+
 I have an [automated timestamping program](https://github.com/hugh-braico/skug-stamper)
 in the works and it's what I currently use to timestamp SGOCE's vods, but it's
 kind of a lot for other people to pick up and use right now. Making it more
