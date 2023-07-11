@@ -114,6 +114,9 @@ Then I should have the file uploaded to the site within a week or so.
 
 Does your vod ALREADY HAVE TIMESTAMPS IN THE DESCRIPTION?
 Check out [this tool](https://github.com/hugh-braico/yt-timestamp-to-twb)!
+(You could do the entire timestamping process through this tool even
+if timestamps don't already exist, but it's slower than editing a
+spreadsheet directly)
 
 I have an [automated timestamping program](https://github.com/hugh-braico/skug-stamper)
 in the works and it's what I currently use to timestamp SGOCE's vods, but it's
