@@ -13,6 +13,7 @@ character_choices = [
     ("EL", "Eliza"),
     ("FI", "Filia"),
     ("FU", "Fukua"),
+    ("MA", "Marie"),
     ("MF", "Ms. Fortune"),
     ("PW", "Painwheel"),
     ("PS", "Parasoul"),
@@ -37,6 +38,8 @@ region_list = [
 # list of Skullgirls versions (Following the same naming as TWB)
 # https://github.com/Servan42/TWB_Parser/blob/master/List_of_CharactersCode_Regions_Versions.md
 version_list = [
+    'Marie Patch',
+    'Marie Beta',
     'Black Dahlia Patch',
     'Black Dahlia Alpha',
     'Umbrella Patch',
