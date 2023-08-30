@@ -5,7 +5,7 @@ filling out a relatively simple csv file, and then sending it to me (SeaJay).
 
 ## Prerequisites
 
-* Your VOD must be a publicly-viewable YouTube video (unlisted is OK).
+* Must be a publicly-viewable YouTube video (unlisted is OK).
 * It must feature Skullgirls gameplay between two human players.
 * PC/Console only (not Mobile).
 
@@ -16,6 +16,10 @@ Other than that, there are very little restrictions:
 * Casual matches are OK.
 * Outdated versions are OK, but it's good to specify this in the YouTube title
   or description.
+* You don't have to be the uploader/owner. Slowtrain merely links to videos and
+  doesn't [freeboot](https://www.urbandictionary.com/define.php?term=Freebooting),
+  nor does it run its own ads or any kind of monetisation. If it's someone else's
+  unlisted video, you may want to ask the person if they're OK with it being linked to.
 
 ## Filling out a csv file
 
@@ -33,7 +37,7 @@ The first row is just the table header, and each row below it represents a set
 between two players. Right now there's only one mostly-empty row representing a
 set.
 
-The first order of business is to fill out some basic info about your event:
+The first order of business is to fill out some basic info about the event:
 
 * **Event Name:** The name of the event the set is being played in.
 	* Use "Casual Matches" if it's not any particular event or tournament.
@@ -54,13 +58,13 @@ Once you've done that, it should look something like this:
 
 ![Basic info filled in](./diagrams/2_basicinfo.png)
 
-If your VOD contains *multiple sets*, copy this row a bunch of times, and then
+If the VOD contains *multiple sets*, copy this row a bunch of times, and then
 optionally adjust the column widths a bit to make the rest easier to edit.
 
 ![Copied and resized rows](./diagrams/3_copiedlines.png)
 
 Now we can start adding sets! Navigate to the roundstart of the first game of
-the first set in your VOD, right click the video, and copy the timestamped URL
+the first set in the VOD, right click the video, and copy the timestamped URL
 like so:
 
 ![Copying a YouTube link](./diagrams/4_youtubecopy.png)
@@ -112,7 +116,7 @@ Then I should have the file uploaded to the site within a week or so.
 
 ## A note about automated timestamping
 
-Does your vod ALREADY HAVE TIMESTAMPS IN THE DESCRIPTION?
+Does the vod ALREADY HAVE TIMESTAMPS IN THE DESCRIPTION?
 Check out [this tool](https://github.com/hugh-braico/yt-timestamp-to-twb)!
 (You could do the entire timestamping process through this tool even
 if timestamps don't already exist, but it's slower than editing a
