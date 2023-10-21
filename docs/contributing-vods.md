@@ -49,9 +49,9 @@ The first order of business is to fill out some basic info about the event:
   "Oceania".
   * If you're in a region not well-described by any of these, please get in
     touch with me.
-* **Version**: I've prefilled this with "Black Dahlia Patch" for you, but if
-  you're reading this in the future you might want "Marie Beta" or "Marie
-  Patch".
+* **Version**: I've prefilled this with "Marie Alpha" for you, but if
+  you're reading this in the future you might want "Marie Patch". If it's a
+  slightly older vod, you may want "Black Dahlia Patch", and so on.
   * [Full version list from source code if you need it](https://github.com/hugh-braico/slowtrainroll.in/blob/master/viewer/models.py#L39)
 
 Once you've done that, it should look something like this:
