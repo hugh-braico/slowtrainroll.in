@@ -39,7 +39,7 @@ region_list = [
 # https://github.com/Servan42/TWB_Parser/blob/master/List_of_CharactersCode_Regions_Versions.md
 version_list = [
     'Marie Patch',
-    'Marie Beta',
+    'Marie Alpha',
     'Black Dahlia Patch',
     'Black Dahlia Alpha',
     'Umbrella Patch',
