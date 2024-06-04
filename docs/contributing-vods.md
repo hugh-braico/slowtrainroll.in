@@ -87,6 +87,7 @@ For characters, use the *abbreviated name*:
 | Ms. Fortune  | MF           | Painwheel    | PW           |
 | Parasoul     | PS           | Peacock      | PC           |
 | Robo-Fortune | RF           | Squigly      | SQ           |
+| Umbrella     | UM           | Valentine    | VA           |
 
 Some of these slip people up (especially Parasoul/PS, Peacock/PC, Double/DB, and
 Beowulf/BW). Once you know them all though, it saves on a ton of typing time. 
