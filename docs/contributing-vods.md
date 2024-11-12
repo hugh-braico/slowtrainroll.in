@@ -107,7 +107,7 @@ tricks).
 
 You can send me the file through any of these avenues:
 
-* Send me a Discord DM: `SeaJay#4444`
+* Send me a Discord DM: `seajay4444`
 * Send me an email at `admin at slowtrainroll dot in` (email obfuscated slightly
   to discourage scrapers)
 * Send me a Twitter DM: [@SeaJay4444](https://twitter.com/SeaJay4444)
