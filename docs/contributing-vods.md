@@ -139,16 +139,10 @@ Then I should have the file uploaded to the site within a week or so.
 
 ## A note about automated timestamping
 
-Does the vod ALREADY HAVE TIMESTAMPS IN THE DESCRIPTION?
-Check out [this tool](https://github.com/hugh-braico/yt-timestamp-to-twb)!
-(You could do the entire timestamping process through this tool even
-if timestamps don't already exist, but it's slower than editing a
-spreadsheet directly)
+For netplay matches, it is possible to extract timestamps from the video file
+using image recognition and OCR, but it's kind of janky.
 
 I have an [automated timestamping program](https://github.com/hugh-braico/skug-stamper)
 in the works and it's what I currently use to timestamp SGOCE's vods, but it's
 kind of a lot for other people to pick up and use right now. Making it more
 accessible is still a work in progress.
-
-If you're the tinkering type, the latest version is in the
-[gui branch](https://github.com/hugh-braico/skug-stamper/tree/gui).
