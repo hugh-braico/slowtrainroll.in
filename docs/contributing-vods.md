@@ -21,7 +21,30 @@ Other than that, there are very little restrictions:
   nor does it run its own ads or any kind of monetisation. If it's someone else's
   unlisted video, you may want to ask the person if they're OK with it being linked to.
 
-## Filling out a csv file
+## Easy mode: when the video already has timestamps
+
+If your youtube video already has timestamps in its description like:
+
+```
+0:00:00 Player (Char/Char/Char) vs Player (Char/Char/Char)
+0:08:51 Player (Char/Char/Char) vs Player (Char/Char/Char)
+0:28:12 Player (Char/Char/Char) vs Player (Char/Char/Char)
+...
+```
+
+you can copy that into [this tool](https://github.com/hugh-braico/yt-timestamp-to-twb),
+and it will fill out the file for you! Then all you need to do is send
+the file over (see "Sending the file to SeaJay" below).
+
+If it only has players but no teams, you'll need to either add teams to the timestamps
+before running the generator, or fill in the teams in the resulting file manually
+(read on for how to do that).
+
+If you prefer, you could do the entire timestamping process through this tool even if
+timestamps don't already exist, but it's slower than editing a spreadsheet directly.
+Would only recommend if you really hate using Excel.
+
+## Manual method: filling out a csv file
 
 Download and save the [template csv file](https://github.com/hugh-braico/slowtrainroll.in/blob/master/docs/twb_csv_template.csv).
 
