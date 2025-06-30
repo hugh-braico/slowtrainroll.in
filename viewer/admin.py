@@ -96,10 +96,11 @@ def parse_vods_from_csv(f):
         # Parse out the date field from string
         # By default try YYYY-MM-DD (Servan),
         # but fall back on DD/MM/YYYY (Excel default)
+        filtered_date = temp_row['date'].replace("\'", "").strip()
         try:
-            temp_row['date'] = datetime.strptime(temp_row['date'], '%Y-%m-%d').date()
+            temp_row['date'] = datetime.strptime(filtered_date, '%Y-%m-%d').date()
         except:
-            temp_row['date'] = datetime.strptime(temp_row['date'], '%d/%m/%Y').date()
+            temp_row['date'] = datetime.strptime(filtered_date, '%d/%m/%Y').date()
 
         # Construct and add a vod that uses all this row's values
         parsed_vods.append(Vod(**temp_row))
