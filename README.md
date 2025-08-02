@@ -2,15 +2,15 @@
 
 https://slowtrainroll.in/
 
-Skullgirls VOD site in the same vein as tunawithbacon.com, keeponrock.in, 
+Skullgirls VOD site in the same vein as tunawithbacon.com, keeponrock.in,
 rockthedrag.in, etc
 
 ## What is this written in
 
-* Web framework: Django 3.2
-* Database: SQLite
-* Most code written in python
-* Hosted on AWS Lightsail with gunicorn + nginx
+- Web framework: Django 3.2
+- Database: SQLite
+- Most code written in python
+- Hosted on AWS Lightsail with gunicorn + nginx
 
 ## Getting started
 
@@ -42,10 +42,10 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-Connect to http://127.0.0.1:8000/ in your browser to check it works.
+Connect to <http://127.0.0.1:8000/> in your browser to check it works.
 
 To test the admin backend, `python3 manage.py createsuperuser` then visit 
-http://127.0.0.1:8000/admin in your browser.
+<http://127.0.0.1:8000/admin> in your browser.
 
 ### Deploying with gunicorn+nginx
 
@@ -65,7 +65,7 @@ Start gunicorn as a background daemon and bind it to a Unix socket
 bash deployment/start_gunicorn.sh
 ```
 
-Once HTTP looks good, use [Let's Encrypt](https://certbot.eff.org/) to 
+Once HTTP looks good, use [Let's Encrypt](https://certbot.eff.org/) to
 generate SSL certs and then make sure it didn't mess up your nginx.conf
 
 ### Applying updates to prod after initial deployment
@@ -86,13 +86,27 @@ python3 manage.py collectstatic
 bash deployment/restart_gunicorn.sh
 ```
 
+### Launch slowtrain as a systemd service
+
+This means that if the machine reboots, slowtrain will come up automatically.
+
+Modify the user, paths etc in `deployment/slowtrainrollin.service` to fit the
+details of your host machine. Then:
+
+```shell
+sudo cp deployment/slowtrainrollin.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable slowtrainrollin.service
+sudo systemctl start slowtrainrollin.service
+```
+
 ### Adding and exporting data
 
 This is a little unsophisticated but I don't see the database growing past
 about 10MB (<1MB currently), so it can afford to be.
 
 The [admin backend](https://slowtrainroll.in/admin/admin/csvuploadpage/) has
-a page to add vods, and also bulk-upload vods via 
+a page to add vods, and also bulk-upload vods via
 [TWB-style csv files](https://github.com/Servan42/TWB_Parser).
 
 The [/backup.csv](https://slowtrainroll.in/backup.csv) page presents every vod
@@ -100,13 +114,14 @@ in plaintext TWB csv format.
 
 ## Why the name slowtrainroll.in?
 
-Big Band says it during his 
-[Take the A-Train](https://www.youtube.com/watch?v=cb2w2m1JmCY) special, and
-it's a reference to the blues song
+Big Band says it during his
+[Take the A-Train](https://www.youtube.com/watch?v=cb2w2m1JmCY) special.
+
+We aren't really sure what it's a reference to, but it could be the blues song
 [Train Kept A-Rollin'](https://en.wikipedia.org/wiki/Train_Kept_A-Rollin%27)
 by Tiny Bradshaw.
 
-The other name contender was
+The other name contender for the name was
 [hustlin.rocks](https://wiki.gbl.gg/w/Skullgirls/Cerebella#Supers) since that
 is apparently a valid URL, but since OCE is the Big Band region this one won
 out.

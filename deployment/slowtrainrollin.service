@@ -1,0 +1,25 @@
+[Unit]
+Description=slowtrainroll.in Gunicorn Daemon
+After=network.target
+
+[Service]
+Type=notify
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/slowtrainroll.in
+Environment="PATH=/home/ubuntu/.local/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/home/ubuntu/slowtrainroll.in"
+ExecStartPre=/bin/mkdir -p /home/ubuntu/slowtrainroll.in/logs
+ExecStart=/usr/local/bin/gunicorn \
+          --bind unix:/tmp/gunicorn.sock \
+          --workers 3 \
+          --access-logfile /home/ubuntu/slowtrainroll.in/logs/gunicorn_access.log \
+          --error-logfile /home/ubuntu/slowtrainroll.in/logs/gunicorn_error.log \
+          slowtrainrollin.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
