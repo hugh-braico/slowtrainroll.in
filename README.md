@@ -88,7 +88,8 @@ bash deployment/restart_gunicorn.sh
 
 ### Launch slowtrain as a systemd service
 
-This means that if the machine reboots, slowtrain will come up automatically.
+This is optional, but it means that if the machine reboots, slowtrain will come
+up again automatically.
 
 Modify the user, paths etc in `deployment/slowtrainrollin.service` to fit the
 details of your host machine. Then:
@@ -98,6 +99,18 @@ sudo cp deployment/slowtrainrollin.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable slowtrainrollin.service
 sudo systemctl start slowtrainrollin.service
+```
+
+Check status with
+
+```shell
+sudo systemctl status slowtrainrollin.service
+```
+
+Check logs with
+
+```shell
+journalctl -xeu slowtrainrollin.service
 ```
 
 ### Adding and exporting data
