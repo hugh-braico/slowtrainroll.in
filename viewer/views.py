@@ -65,9 +65,15 @@ def filtered_vods(filter_dict):
     vods = Vod.objects.all()
 
     # Filter event
-    event = filter_dict.get('event', "")
-    if event != '':
-        vods = vods.filter(event__icontains=event)
+    # Each keyword is searched for separately
+    # Use "-" before a keyword to negate
+    event_keywords = filter_dict.get('event', "").split()
+    for kw in event_keywords:
+        if kw.startswith("-"):
+            basekw = kw.lstrip("-")
+            vods = vods.exclude(event__icontains=basekw)
+        else:
+            vods = vods.filter(event__icontains=kw)
 
     # Filter region
     region = filter_dict.get('region', "")
