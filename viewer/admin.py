@@ -124,8 +124,8 @@ class BatchPlayerRenamePage(CustomModelPage):
             old_name = self.bound_request.POST.get('old_name').strip()
             new_name = self.bound_request.POST.get('new_name').strip()
             vods = Vod.objects.all()
-            p1_is_old_name = vods.filter(p1name__icontains=old_name)
-            p2_is_old_name = vods.filter(p2name__icontains=old_name)
+            p1_is_old_name = vods.filter(p1name__iexact=old_name)
+            p2_is_old_name = vods.filter(p2name__iexact=old_name)
             if not p1_is_old_name | p2_is_old_name:
                 raise LookupError(f"ERROR: couldn't find old_name {old_name} anywhere in the database!")
             updated_vods = 0
