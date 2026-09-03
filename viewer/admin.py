@@ -117,8 +117,8 @@ def parse_vods_from_csv(f):
 # Simple page to rename players in bulk
 class BatchPlayerRenamePage(CustomModelPage):
     title = 'Batch-rename a player (dangerous)'
-    old_name = models.CharField(name='old_name', verbose_name="Old name (case-sensitive)")
-    new_name = models.CharField(name='new_name', verbose_name="New name")
+    old_name = models.CharField(name='old_name', verbose_name="Old name (case-sensitive)", max_length=32)
+    new_name = models.CharField(name='new_name', verbose_name="New name", max_length=32)
     def save(self):
         try:
             old_name = self.bound_request.POST.get('old_name').strip()
