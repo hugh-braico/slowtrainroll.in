@@ -114,6 +114,38 @@ def parse_vods_from_csv(f):
     return parsed_vods
 
 
+# Simple page to rename players in bulk
+class BatchPlayerRenamePage(CustomModelPage):
+    title = 'Batch-rename a player (dangerous)'
+    old_name = models.CharField(name='old_name', verbose_name="Old name (case-sensitive)")
+    new_name = models.CharField(name='new_name', verbose_name="New name")
+    def save(self):
+        try:
+            old_name = self.bound_request.POST.get('old_name').strip()
+            new_name = self.bound_request.POST.get('new_name').strip()
+            vods = Vod.objects.all()
+            p1_is_old_name = vods.filter(p1name__icontains=old_name)
+            p2_is_old_name = vods.filter(p2name__icontains=old_name)
+            if not p1_is_old_name | p2_is_old_name:
+                raise LookupError(f"ERROR: couldn't find old_name {old_name} anywhere in the database!")
+            updated_vods = 0
+            if p1_is_old_name:
+                for vod in p1_is_old_name:
+                    vod.p1name = new_name
+                    updated_vods += 1
+                Vod.objects.bulk_update(p1_is_old_name, ['p1name'])
+            if p2_is_old_name:
+                for vod in p2_is_old_name:
+                    vod.p2name = new_name
+                    updated_vods += 1
+                Vod.objects.bulk_update(p2_is_old_name, ['p2name'])
+            self.bound_admin.message_success(self.bound_request, f'Success. Updated {updated_vods} from {old_name} -> {new_name}.')
+        except Exception as err:
+            self.bound_admin.message_error(self.bound_request, str(err))
+        else:
+            super().save()
+
+
 # just extra little navigation bits in the vod admin screen
 class VodAdmin(admin.ModelAdmin):
     list_filter   = ['date', 'region', 'version', 'event']
@@ -123,4 +155,5 @@ class VodAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Vod, VodAdmin)
+BatchPlayerRenamePage.register()
 CsvUploadPage.register()
