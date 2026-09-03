@@ -40,6 +40,7 @@ region_list = [
 version_list = [
     '2024 Balance Patch',
     'Marie Patch',
+    'Marie Beta',
     'Marie Alpha',
     'Black Dahlia Patch',
     'Black Dahlia Alpha',

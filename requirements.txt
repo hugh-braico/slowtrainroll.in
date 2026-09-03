@@ -1,3 +1,4 @@
 Django
 django-etc
 django-static-precompiler
+gunicorn >= 24.1.0
